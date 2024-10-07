@@ -1,13 +1,13 @@
 import { Stack } from "@mantine/core";
 import { MentorshipCard } from "./components/mentorship-card";
+import { metorshipsList } from "@/data/mentorships-list";
 
 const List = () => {
   return (
     <Stack>
-      <MentorshipCard />
-      <MentorshipCard />
-      <MentorshipCard />
-      <MentorshipCard />
+      {metorshipsList.map((mentorship, index) => (
+        <MentorshipCard key={index} mentorship={mentorship} />
+      ))}
     </Stack>
   );
 };

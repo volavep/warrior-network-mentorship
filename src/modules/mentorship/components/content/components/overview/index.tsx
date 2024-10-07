@@ -1,15 +1,18 @@
 "use client";
 import { UserInfo } from "@/components";
+import { useMentorshipStore } from "@/modules/mentorship/store";
 import { Badge, Card, Grid, Group, Stack, Text, Title } from "@mantine/core";
 
 const Overview = () => {
+  const { activeMentorship } = useMentorshipStore();
+
   return (
     <Card bg="primary" p="xl" c="white">
       <Grid>
         <Grid.Col span={6}>
           <Stack>
             <Group>
-              <Title order={4}>Fullstack development</Title>
+              <Title order={4}>{activeMentorship?.skill}</Title>
               <Badge
                 size="xl"
                 style={{
@@ -25,11 +28,10 @@ const Overview = () => {
                 c="#FF8E5C"
                 color="#493645"
               >
-                English
+                {activeMentorship?.language === "en" ? "English" : "Spanish"}
               </Badge>
             </Group>
-
-            <UserInfo />
+            <UserInfo user={activeMentorship?.mentee} />
           </Stack>
         </Grid.Col>
         <Grid.Col span={6}>
@@ -38,16 +40,13 @@ const Overview = () => {
               <Text size="sm" fw={700}>
                 Objective:
               </Text>
-              <Text size="sm">
-                Learn to code and become a Web Developer in 2023 with HTML, CSS,
-                Javascript, React, Node.js, Machine Learning and more!
-              </Text>
+              <Text size="sm">{activeMentorship?.objective}</Text>
             </Stack>
             <Stack gap="0">
               <Text size="sm" fw={700}>
                 Previous Knowledges:
               </Text>
-              <Text size="sm">No previous knowledge.</Text>
+              <Text size="sm">{activeMentorship?.previousKnowledge}</Text>
             </Stack>
           </Stack>
         </Grid.Col>

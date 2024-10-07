@@ -8,3 +8,7 @@
     border: 1px solid #FF8E5C;
     box-shadow: 0px 0px 10px 0px #00000040;
 }
+
+.root.active{
+    border: 1px solid #FF8E5C;
+}

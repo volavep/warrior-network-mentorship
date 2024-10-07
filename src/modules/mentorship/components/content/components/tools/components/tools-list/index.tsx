@@ -3,8 +3,10 @@ import { AddToolModal, Tool } from "./components";
 import { BsPlusCircle } from "react-icons/bs";
 import { Fragment } from "react";
 import { useDisclosure } from "@mantine/hooks";
+import { useToolsStore } from "../../store";
 
 const ToolsList = () => {
+  const { mentorshipTools } = useToolsStore();
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -17,8 +19,10 @@ const ToolsList = () => {
           </Text>
         </Stack>
         <Stack>
-          <Tool />
-          <Tool />
+          {mentorshipTools.map((tool) => (
+            <Tool key={tool.id} tool={tool} />
+          ))}
+
           <Button onClick={open} color="#343839" leftSection={<BsPlusCircle />}>
             Add Tool
           </Button>

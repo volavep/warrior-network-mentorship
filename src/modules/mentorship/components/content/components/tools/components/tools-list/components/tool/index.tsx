@@ -12,10 +12,35 @@ import {
 import { IoBookOutline } from "react-icons/io5";
 import { FaLock } from "react-icons/fa";
 import classes from "./tool.module.css";
+import { Tool as ToolT } from "@/types/tool";
+import { VoidComponent } from "@/types/common";
+import { useToolsStore } from "../../../../store";
 
-const Tool = () => {
+type ToolProps = {
+  tool: ToolT;
+  selected?: boolean;
+  onClick?: () => void;
+};
+
+const Tool: VoidComponent<ToolProps> = ({
+  tool,
+  selected = false,
+  onClick,
+}) => {
+  const { activeTool, setActiveTool } = useToolsStore();
+
+  const handleToolClick = () => {
+    setActiveTool(tool);
+  };
+
   return (
-    <Card bg="#2F313A" classNames={classes} radius="8px">
+    <Card
+      bg="#2F313A"
+      classNames={classes}
+      radius="8px"
+      className={activeTool?.id === tool.id || selected ? classes.active : ""}
+      onClick={onClick ? onClick : handleToolClick}
+    >
       <Grid gutter="xl" align="center">
         <Grid.Col span={1}>
           <Box
@@ -37,19 +62,18 @@ const Tool = () => {
           <Stack gap="4px" pl="xs">
             <Group gap="xs">
               <Title order={4} fw={600}>
-                Main Objective
+                {tool.name}
               </Title>
-              <Tooltip label="Mandatory">
-                <Box style={{ cursor: "help" }}>
-                  <FaLock size={12} color="white" />
-                </Box>
-              </Tooltip>
+              {tool.mandatory && (
+                <Tooltip label="Mandatory">
+                  <Box style={{ cursor: "help" }}>
+                    <FaLock size={12} color="white" />
+                  </Box>
+                </Tooltip>
+              )}
             </Group>
 
-            <Text size="xs">
-              Main objective of the mentorship defined by the mentor and
-              according to the mentee&apos;s objectives.
-            </Text>
+            <Text size="xs">{tool.description}</Text>
           </Stack>
         </Grid.Col>
       </Grid>

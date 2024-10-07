@@ -14,23 +14,7 @@ const theme = createTheme({
       "#B23700",
       "#992F00",
     ],
-    dark: [
-      "#262728",
-      "#222424",
-      "#1F2121",
-      "#1C1E1F",
-      "#191B1C",
-      "#16191A",
-      "#141718",
-      "#121515",
-      "#111213",
-      "#0F1011",
-      "#0E0F0F",
-      "#0D0D0D",
-      "#0B0C0C",
-    ],
   },
-  black: "#141718",
   primaryColor: "primary",
   components: {
     Button: {
@@ -56,6 +40,18 @@ const theme = createTheme({
     Paper: {
       defaultProps: {
         bg: "#1B1E1F",
+      },
+    },
+    Badge: {
+      styles: {
+        label: {
+          textTransform: "capitalize",
+          fontWeight: 400,
+          fontSize: 13,
+        },
+        root: {
+          padding: "7px 10px !important",
+        },
       },
     },
   },

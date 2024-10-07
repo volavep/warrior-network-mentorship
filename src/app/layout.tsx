@@ -1,6 +1,9 @@
 import { Providers } from "@/components";
 import type { Metadata } from "next";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import "@mantine/dates/styles.css";
+import "@mantine/tiptap/styles.css";
 import { ColorSchemeScript } from "@mantine/core";
 
 export const metadata: Metadata = {

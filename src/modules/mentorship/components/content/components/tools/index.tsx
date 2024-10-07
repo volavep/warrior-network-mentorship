@@ -2,6 +2,7 @@
 
 import { Grid, Paper } from "@mantine/core";
 import { ToolsList } from "./components";
+import { ToolView } from "./components/tool-view";
 
 const Tools = () => {
   return (
@@ -15,7 +16,9 @@ const Tools = () => {
         >
           <ToolsList />
         </Grid.Col>
-        <Grid.Col span={6}>Hello</Grid.Col>
+        <Grid.Col span={6}>
+          <ToolView />
+        </Grid.Col>
       </Grid>
     </Paper>
   );
